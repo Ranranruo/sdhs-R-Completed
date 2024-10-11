@@ -84,7 +84,7 @@ plot(HGHT ~ WGHT, data=data, ylab="Height(cm)", xlab="Weight(kg)",pch=16, cex=0.
 
 # 산점도를 그리세요. 단, x축을 키(레이블명을 Height(cm)로 할 것), y축을 몸무게 (레이블명을  Weight(kg)로 할 것)로 하세요.
 # 해석결과 서술시 상관계수에 대한 내용이 반드시 포함되도록 하세요.
-plot(HGHT ~ WGHT, data=data, ylab="Weight(kg)", xlab="Height(cm)",pch=16, cex=0.5)
+plot(WGHT ~ HGHT, data=data, ylab="Weight(kg)", xlab="Height(cm)",pch=16, cex=0.5)
 
 #또, legend() 함수를 이용하면 범례에 사용될 옵션을 따로 설정할 수 있다.
 install.packages("dplyr")
