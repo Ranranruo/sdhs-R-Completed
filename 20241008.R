@@ -57,6 +57,10 @@ hist(data$HGHT, main="Distribution of height", xlab="height(cm)")
 hist(data$HGHT, main="Distribution of height", xlab="높이(cm)", 
      breaks = 30, freq=F, col="green", border="red")
 
+#1.  x축을 height, y축을 빈도수로 하여 히스토그램을 만드시오. 단 계급구간의 수는 20으로 설정하고, 막대의 색은 Green으로, 막대기의 테두리 색은 black으로 하세요.
+hist(data$HGHT, main="height", xlab="height", ylab = "빈도수",
+     breaks = 20, freq=T, col="green", border="black")
+
 #Barplot(막대그래프)
 #히스토그램과 유사하지만, X축에 표현하고자 하는 변수가 이산형 변수일 때는 빈도수를 바 그래프로 나타낼 수 있다. table() 함수를 이용해 빈도표를 만들고, 바 그래프로 나타낸다.
 table <- table(data$Q_SMK_YN)
@@ -65,11 +69,22 @@ barplot(table, main="Distribution of smoking", names.arg=c("Never", "Ex-smoker",
 table <- table(data$HME_YYYYMM, data$Q_SMK_YN)
 print(table)
 
+# 2. 흡연여부에 대한 막대그래프를 그리세요. 1번을 비흡연, 2번을 끊었음 3번을 흡연으로 label을 붙여서 시각화하세요.
+table <- table(data$Q_SMK_YN)
+print(table)
+barplot(table, main="흡연 여부", names.arg=c("비흡연", "끊었음", "흡연"), ylab="frequency")
+table <- table(data$HME_YYYYMM, data$Q_SMK_YN)
+print(table)
+
 #산점도 그리기
 #Scatter plot
 #두 연속형 변수 간의 관계는 산점도로 한 눈에 보여줄 수 있다. pch=n 옵션은 점의 모양, cex=n 옵션은 점의 크기를 지정한다.
 plot(HGHT ~ WGHT, data=data, ylab="Height(cm)", xlab="Weight(kg)",pch=16, cex=0.5)
 #범주형 변수에 따른 점의 분포를 표현하고자 할 때는 점의 색깔(col= 옵션)로 구분해서 표현할 수 있다. 2009년과 2015년에 실시한 검사에서 수검자의 신장, 체중 분포에 차이가 있는지 확인해보자.
+
+# 산점도를 그리세요. 단, x축을 키(레이블명을 Height(cm)로 할 것), y축을 몸무게 (레이블명을  Weight(kg)로 할 것)로 하세요.
+# 해석결과 서술시 상관계수에 대한 내용이 반드시 포함되도록 하세요.
+plot(HGHT ~ WGHT, data=data, ylab="Weight(kg)", xlab="Height(cm)",pch=16, cex=0.5)
 
 #또, legend() 함수를 이용하면 범례에 사용될 옵션을 따로 설정할 수 있다.
 install.packages("dplyr")
@@ -90,6 +105,7 @@ plot(HGHT ~ WGHT, data=data, ylab="Height(cm)", xlab="Weight(kg)",pch=16, cex=0.
 x <- 1:10
 y1 <- x^2
 y2 <- x^3
+
 # 그래프 그리기
 plot(x, y1, type="l", col="blue", lty=1, lwd=2, ylim=c(0, 1000))
 lines(x, y2, col="red", lty=2, lwd=2)
@@ -163,3 +179,21 @@ legend("topright", legend=c("2x", "3x"), col=c("blue", "red"), lty=c(1, 2), lwd=
 legend("bottomright", legend=c("y=2x", "y=3x"), col=c("blue", "red"), lty=c(1, 2), lwd=3)
 #10. 범례를 "top"에 추가하고, 2x는 파란색 원, 3x는 빨간색 사각형으로 표시하며, 범례의 제목을 "함수 비교"로 지정
 legend("top", legend=c("2x", "3x"), col=c("blue", "red"), pch=c(16, 15), title="함수 비교")
+
+
+#4. 아래의 코드를 실행하여 데이터를 입력하고, 그래프를 그린 후 문제의 조건에 맞추어 범례를 적용하세요.
+x <- 1:10
+y1 <- 5 * x
+y2 <- 2 * x
+
+plot(x, y1, type="l", col="red", lty=1, lwd=2, ylim=c(0, 30), xlab="X", ylab="Y")
+lines(x, y2, col="blue", lty=2, lwd=2)
+
+#4-1. 범례를 "bottomright" 위치에 추가하고, 선의 색상과 스타일을 표시
+legend("bottomright", legend=c("2x", "3x"), col=c("blue", "red"), lty=c(1, 2), lwd=2)
+
+#4-2. 범례를 "bottomleft"에 추가하고, 5x는 검정색 실선, 2x는 노란색 점선으로 표시
+legend("bottomleft", legend=c("5x", "2x"), col=c("black", "yellow"), lty=c(1, 3), lwd=2)
+
+# 4-3. 범례를 "center"에 추가하고, 5x는 파란색 원, 2x는 녹색 사각형으로 표시하며, 범례의 제목을 "비교"로 지정
+legend("center", legend=c("5x", "2x"), col=c("blue", "green"), pch=c(16, 15), title="비교")
